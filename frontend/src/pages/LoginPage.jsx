@@ -6,7 +6,8 @@ import '../styles/LoginPage.css';
 const LoginPage = () => {
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     navigate('/home');
   }
 

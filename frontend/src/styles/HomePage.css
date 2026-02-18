@@ -1,0 +1,356 @@
+:root {
+    --color-primary: #00007F;
+    --color-accent: #FEC956;
+    --color-darkgray: #4B4A4A;
+    --color-gray-100: #f3f4f6;
+    --color-white: #ffffff;
+    --color-blue-dark: #00005C;
+}
+
+
+.homepage-container {
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--color-white);
+    font-family: 'Inter', sans-serif;
+}
+
+/* Navbar styles moved to Navbar.css */
+
+.hero-section {
+    position: relative;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    color: white;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('/bg-ustp.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(0, 0, 127, 0.9), rgba(0, 0, 127, 0.7), transparent);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    padding: 0 4rem;
+    max-width: 600px;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.hero-highlight {
+    color: var(--color-accent);
+}
+
+.hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-primary {
+    background-color: var(--color-accent);
+    color: #000;
+    font-weight: 700;
+    padding: 0.75rem 2rem;
+    border-radius: 2rem;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    border-radius: 2rem;
+    border: 1px solid white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+}
+
+.btn-outline:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.credentials-section {
+    padding: 4rem;
+    background-color: var(--color-white);
+}
+
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 3rem;
+}
+
+.credentials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.credential-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.credential-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.card-header-bg {
+    height: 120px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.credential-card:nth-child(1) .card-header-bg {
+    background-color: #BFDBFE;
+}
+
+.credential-card:nth-child(2) .card-header-bg {
+    background-color: #FED7AA;
+}
+
+.credential-card:nth-child(3) .card-header-bg {
+    background-color: #9CA3AF;
+}
+
+.credential-card:nth-child(4) .card-header-bg {
+    background-color: #FBBF24;
+}
+
+.credential-card:nth-child(5) .card-header-bg {
+    background-color: #FCA5A5;
+}
+
+.credential-card:nth-child(6) .card-header-bg {
+    background-color: #C4B5FD;
+}
+
+.card-icon {
+    z-index: 10;
+    color: var(--color-darkgray);
+    opacity: 0.6;
+}
+
+.card-content {
+    margin-top: 100px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-darkgray);
+    margin-bottom: 0.5rem;
+}
+
+.card-desc {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+    flex: 1;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.price-tag {
+    font-weight: 800;
+    color: var(--color-primary);
+    font-size: 1.1rem;
+}
+
+.request-btn-small {
+    background-color: var(--color-accent);
+    color: white;
+    border: none;
+    border-radius: 1rem;
+    padding: 0.25rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.status-section {
+    text-align: center;
+    padding: 4rem;
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.status-check-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    background: white;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.status-input {
+    flex: 1;
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    outline: none;
+}
+
+.status-btn {
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0 2rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.features-section {
+    padding: 4rem;
+    text-align: center;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-item {
+    background: #f9fafb;
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid #e5e7eb;
+}
+
+.feature-icon-wrapper {
+    background: var(--color-white);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    color: var(--color-primary);
+}
+
+.feature-desc {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+.footer {
+    background-color: #0F172A;
+    color: white;
+    padding: 4rem 2rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-col h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 0.75rem;
+    font-size: 0.875rem;
+    color: #94a3b8;
+    cursor: pointer;
+}
+
+.footer-col ul li:hover {
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        padding: 0 2rem;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+    }
+}
