@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Bell, User as UserIcon } from 'lucide-react';
+import logo from '../assets/regquest-logo.png';
 import '../styles/Navbar.css';
 
 const Navbar = ({ currentUser }) => {
     const location = useLocation();
 
-    // Default user if not provided
     const user = currentUser || {
         name: "User",
         notifications: 0
@@ -19,7 +19,7 @@ const Navbar = ({ currentUser }) => {
     return (
         <nav className="navbar">
             <div className="logo-section">
-                <span className="logo-text">RegQuest</span>
+                <img src={logo} alt="RegQuest" className="logo-image" />
             </div>
 
             <div className="nav-links">

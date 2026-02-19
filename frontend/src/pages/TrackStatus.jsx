@@ -2,12 +2,7 @@ import React from 'react'
 import Navbar from '../components/Navbar';
 import '../styles/HomePage.css';
 
-const TrackStatus = () => {
-
-    const currentUser = {
-        name: "User",
-        notifications: 3
-    };
+const TrackStatus = ({ currentUser }) => {
     return (
         <div className="homepage-container">
             <Navbar currentUser={currentUser} />

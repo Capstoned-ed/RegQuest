@@ -2,11 +2,7 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import '../styles/HomePage.css';
 
-const RequestDocument = () => {
-    const currentUser = {
-        name: "User",
-        notifications: 3
-    };
+const RequestDocument = ({ currentUser }) => {
 
     return (
         <div className="homepage-container">

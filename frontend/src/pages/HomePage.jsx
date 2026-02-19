@@ -4,16 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from '../components/Navbar';
 import '../styles/HomePage.css';
 
-const HomePage = () => {
+const HomePage = ({ currentUser }) => {
 
     const navigate = useNavigate();
-
-    const currentUser = {
-        name: "User",
-        role: "Student",
-        studentId: "2023-0001",
-        notifications: 3
-    };
 
     const credentials = [
         {
