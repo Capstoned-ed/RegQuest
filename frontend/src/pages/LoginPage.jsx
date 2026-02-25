@@ -37,7 +37,7 @@ const LoginPage = () => {
           <form className="login-form">
             <div className="input-group">
               <label htmlFor="email" className="input-label">
-                Student ID / Email Address
+                Student ID
               </label>
               <div className="input-wrapper">
                 <div className="input-icon">
@@ -47,7 +47,7 @@ const LoginPage = () => {
                   type="text"
                   id="email"
                   className="form-input"
-                  placeholder=""
+                  placeholder="Enter your Student ID"
                 />
               </div>
             </div>
@@ -64,7 +64,7 @@ const LoginPage = () => {
                   type="password"
                   id="password"
                   className="form-input"
-                  placeholder=""
+                  placeholder="Enter your password"
                 />
               </div>
             </div>

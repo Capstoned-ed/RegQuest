@@ -1,10 +1,4 @@
-:root {
-    --color-primary: #00007F;
-    --color-accent: #FEC956;
-    --color-darkgray: #4B4A4A;
-    --color-gray-50: #F9FAFB;
-    --color-white: #ffffff;
-}
+
 
 .success-page-container {
     min-height: 100vh;

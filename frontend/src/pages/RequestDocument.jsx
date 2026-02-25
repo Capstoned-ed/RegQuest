@@ -1,15 +1,314 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ChevronRight, ChevronLeft, CheckCircle, Check } from 'lucide-react';
 import Navbar from '../components/Navbar';
-import '../styles/HomePage.css';
+import Footer from '../components/Footer';
+import Button from '../components/Button';
+import '../styles/RequestDocument.css';
 
 const RequestDocument = ({ currentUser }) => {
+    const [documents, setDocuments] = useState([
+        { id: 1, name: 'Transcript of Records (TOR)', description: 'Official academic record', price: 125, isPerPg: true },
+        { id: 2, name: 'Honorable Dismissal', description: 'Official academic record', price: 100, isPerPg: false },
+        { id: 3, name: 'Evaluation', description: 'Official academic record', price: 50, isPerPg: false },
+        { id: 4, name: 'Authentication', description: 'Official academic record', price: 5, isPerPg: true },
+        { id: 5, name: 'CAR', description: 'Official academic record', price: 80, isPerPg: false },
+        { id: 6, name: 'GPA', description: 'Official academic record', price: 80, isPerPg: false },
+        { id: 7, name: 'Endorsement', description: 'Official academic record', price: 80, isPerPg: false },
+        { id: 8, name: 'Officially Enrolled', description: 'Official academic record', price: 80, isPerPg: false },
+        { id: 9, name: 'Earned Units', description: 'Official academic record', price: 80, isPerPg: false },
+    ]);
+    const [selectedDocs, setSelectedDocs] = useState([]);
+    const [currentStep, setCurrentStep] = useState(1);
+    const [purpose, setPurpose] = useState('');
+    const [paymentMethod, setPaymentMethod] = useState('');
+    const navigate = useNavigate();
+
+    // Fetch documents from backend placeholder
+    useEffect(() => {
+        // const fetchDocuments = async () => {
+        //     try {
+        //         const response = await fetch('/api/documents');
+        //         const data = await response.json();
+        //         setDocuments(data);
+        //     } catch (error) {
+        //         console.error('Error fetching documents', error);
+        //     }
+        // };
+        // fetchDocuments();
+    }, []);
+
+    const toggleSelection = (id) => {
+        setSelectedDocs(prev => 
+            prev.includes(id) ? prev.filter(docId => docId !== id) : [...prev, id]
+        );
+    };
+
+    const calculateTotal = () => {
+        return documents
+            .filter(doc => selectedDocs.includes(doc.id))
+            .reduce((total, doc) => total + doc.price, 0);
+    };
+
+    const handleNextStep = () => {
+        if (currentStep < 4) {
+            setCurrentStep(currentStep + 1);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
+
+    const handleBack = () => {
+        if (currentStep > 1) setCurrentStep(currentStep - 1);
+    };
 
     return (
-        <div className="homepage-container">
+        <div className="request-document-page">
             <Navbar currentUser={currentUser} />
-            <div style={{ padding: '2rem' }}>
-                <h1>Request Document Page</h1>
-            </div>
+            
+            <main className="request-main-content">
+                <div className="stepper-container">
+                    <div className={`step ${currentStep >= 1 ? 'active' : ''}`}>
+                        <span className="step-label">Select Document</span>
+                        <div className="step-line"></div>
+                    </div>
+                    <div className={`step ${currentStep >= 2 ? 'active' : ''}`}>
+                        <span className="step-label">Review Data</span>
+                        <div className="step-line"></div>
+                    </div>
+                    <div className={`step ${currentStep >= 3 ? 'active' : ''}`}>
+                        <span className="step-label">Payment</span>
+                        <div className="step-line"></div>
+                    </div>
+                    <div className={`step ${currentStep >= 4 ? 'active' : ''}`}>
+                        <span className="step-label">Complete</span>
+                        <div className="step-line"></div>
+                    </div>
+                </div>
+
+                {currentStep === 1 && (
+                    <div className="request-card">
+                        <h2 className="card-title">Select Document</h2>
+                        
+                        <div className="document-list">
+                            {documents.map((doc) => {
+                                const isSelected = selectedDocs.includes(doc.id);
+                                return (
+                                    <div 
+                                        key={doc.id} 
+                                        className={`document-item ${isSelected ? 'selected' : ''}`}
+                                        onClick={() => toggleSelection(doc.id)}
+                                    >
+                                        <div className="checkbox-container">
+                                            <div className={`custom-checkbox ${isSelected ? 'checked' : ''}`}>
+                                                {isSelected && (
+                                                    <Check size={14} color="white" strokeWidth={3} />
+                                                )}
+                                            </div>
+                                        </div>
+                                        <div className="document-info">
+                                            <h3 className="document-name">{doc.name}</h3>
+                                            <p className="document-desc">{doc.description}</p>
+                                        </div>
+                                        <div className="document-price">
+                                            P{doc.price}{doc.isPerPg ? '/pg' : ''}
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+
+                        <div className="total-section">
+                            <span className="total-label">Total:</span>
+                            <div className="total-amount">{calculateTotal()}</div>
+                        </div>
+
+                        <div className="action-buttons">
+                            <Button className="btn-back" onClick={handleBack} disabled={currentStep === 1} style={{ opacity: currentStep === 1 ? 0 : 1 }}>
+                                <ChevronLeft size={16} />
+                                Back
+                            </Button>
+                            <Button className="btn-next" onClick={handleNextStep}>
+                                Next Step
+                                <ChevronRight size={16} />
+                            </Button>
+                        </div>
+                    </div>
+                )}
+
+                {currentStep === 2 && (
+                    <div className="request-card">
+                        <h2 className="card-title">Review Data</h2>
+                        
+                        <div className="review-data-container">
+                            <div className="review-section">
+                                <h3 className="section-subtitle">Document Request:</h3>
+                                <hr className="section-divider" />
+                                <div className="selected-docs-summary">
+                                    {documents.filter(doc => selectedDocs.includes(doc.id)).map(doc => (
+                                        <div key={doc.id} className="summary-item">
+                                            <div className="summary-doc-info">
+                                                <h4 className="summary-doc-name">{doc.name}</h4>
+                                                <p className="summary-doc-desc">{doc.description}</p>
+                                            </div>
+                                            <div className="summary-doc-qty">x1</div>
+                                        </div>
+                                    ))}
+                                    {selectedDocs.length === 0 && (
+                                        <p style={{ color: '#6c757d', fontSize: '0.9rem' }}>No documents selected.</p>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="review-section">
+                                <h3 className="section-subtitle">Personal Data:</h3>
+                                <hr className="section-divider" />
+                                <div className="form-grid">
+                                    <div className="form-group">
+                                        <label>Full Name</label>
+                                        <input type="text" value="Juan De Letchi" readOnly />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Year Level</label>
+                                        <input type="text" value="1st Year" readOnly />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Student ID</label>
+                                        <input type="text" value="2026202686" readOnly />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Email</label>
+                                        <input type="email" value="juan@email.com" readOnly />
+                                    </div>
+                                    <div className="form-group full-width">
+                                        <label>Program / Course</label>
+                                        <input type="text" value="BS in Information Technology" readOnly />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="review-section">
+                                <h3 className="section-subtitle">Purpose of Request:</h3>
+                                <hr className="section-divider" />
+                                <div className="form-group full-width">
+                                    <input 
+                                        type="text" 
+                                        placeholder="For Personal Files" 
+                                        value={purpose} 
+                                        onChange={(e) => setPurpose(e.target.value)} 
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <p className="warning-text">Incorrect Information? Contact the admin if you think theres a mistake</p>
+
+                        <div className="action-buttons">
+                            <Button className="btn-back" onClick={handleBack} style={{ fontWeight: 800, fontSize: '1.2rem', padding: '0 1rem' }}>
+                                Back
+                            </Button>
+                            <Button className="btn-next" onClick={handleNextStep}>
+                                Next Step
+                            </Button>
+                        </div>
+                    </div>
+                )}
+
+                {currentStep === 3 && (
+                    <div className="request-card">
+                        <h2 className="card-title">Payment</h2>
+                        
+                        <div className="payment-summary-box">
+                            <h3 className="payment-summary-header">Document Request:</h3>
+                            <hr className="section-divider" style={{ borderColor: '#adb5bd' }} />
+                            
+                            <div className="selected-docs-summary">
+                                {documents.filter(doc => selectedDocs.includes(doc.id)).map(doc => (
+                                    <div key={doc.id} className="payment-item">
+                                        <div className="summary-doc-info">
+                                            <h4 className="summary-doc-name">{doc.name}</h4>
+                                            <p className="summary-doc-desc">{doc.description}</p>
+                                        </div>
+                                        <div className="summary-doc-qty">P{doc.price}{doc.isPerPg ? '/pg' : ''}</div>
+                                    </div>
+                                ))}
+                            </div>
+                            
+                            <div className="payment-total-row">
+                                <span className="payment-total-label">Total Amount</span>
+                                <span className="payment-total-amount">P{calculateTotal()}</span>
+                            </div>
+                        </div>
+
+                        <div className="payment-estimate">
+                            <span className="estimate-label">Estimate Completion</span>
+                            <span className="estimate-value">3 to 5 Days</span>
+                        </div>
+
+                        <h3 className="payment-method-title">Select Payment Method</h3>
+                        
+                        <div className="payment-methods-grid">
+                            <Button 
+                                className={`method-btn ${paymentMethod === 'GCash' ? 'selected' : ''}`}
+                                onClick={() => setPaymentMethod('GCash')}
+                            >
+                                GCash
+                            </Button>
+                            <Button 
+                                className={`method-btn ${paymentMethod === 'PayMaya' ? 'selected' : ''}`}
+                                onClick={() => setPaymentMethod('PayMaya')}
+                            >
+                                PayMaya
+                            </Button>
+                            <Button 
+                                className={`method-btn ${paymentMethod === 'E-Wallet' ? 'selected' : ''}`}
+                                onClick={() => setPaymentMethod('E-Wallet')}
+                            >
+                                E-Wallet
+                            </Button>
+                        </div>
+
+                        <div className="action-buttons">
+                            <Button className="btn-back" onClick={handleBack} style={{ fontWeight: 800, fontSize: '1.2rem', padding: '0 1rem' }}>
+                                Back
+                            </Button>
+                            <Button className="btn-submit" onClick={handleNextStep}>
+                                Pay & Submit
+                            </Button>
+                        </div>
+                    </div>
+                )}
+
+                {currentStep === 4 && (
+                    <div className="request-card">
+                        <div className="complete-container">
+                            <div className="success-icon-container">
+                                <CheckCircle size={80} color="#3CC15E" fill="#3CC15E" stroke="white" strokeWidth={2} />
+                            </div>
+                            <h2 className="complete-title">Request Submitted!</h2>
+                            
+                            <p className="complete-message">
+                                Your request has been successfully processed. You can track the status of your documents using the ID below.
+                            </p>
+                            
+                            <div className="tracking-box">
+                                <p className="tracking-label">Your Tracking ID</p>
+                                <h3 className="tracking-id">RQ-097323</h3>
+                            </div>
+                            
+                            <div className="complete-actions">
+                                <Button className="btn-track" onClick={() => navigate('/track-status')}>
+                                    Track Status
+                                </Button>
+                                <Link to="/home" className="btn-home">
+                                    Back to Home
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </main>
+
+            <Footer />
         </div>
     );
 };

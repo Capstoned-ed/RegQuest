@@ -1,0 +1,227 @@
+.track-status-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f7f8f9;
+}
+
+.track-main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 1rem 5rem 1rem;
+}
+
+.track-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.track-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--color-primary); /* Blue */
+    margin-bottom: 0.8rem;
+}
+
+.track-subtitle {
+    font-size: 1.05rem;
+    color: #6c757d;
+}
+
+/* Search Input Form */
+.track-search-container {
+    margin-bottom: 2.5rem;
+    width: 100%;
+    max-width: 450px;
+}
+
+.track-input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-darkgray);
+    text-align: center;
+    border: 3px solid var(--color-accent); /* Yellow border */
+    border-radius: 12px;
+    background-color: white;
+    outline: none;
+    transition: all 0.2s;
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.15); /* Soft yellow glow */
+}
+
+.track-input:focus {
+    box-shadow: 0 4px 20px rgba(255, 193, 7, 0.3);
+}
+
+.track-input::placeholder {
+    color: #adb5bd;
+    font-weight: 400;
+}
+
+/* Result Card */
+.track-result-card {
+    background: white;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    padding: 2.5rem 3rem;
+}
+
+.track-result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 0.5rem;
+}
+
+.track-id-label {
+    font-size: 1rem;
+    color: var(--color-darkgray);
+}
+
+.track-estimate-label {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 0.25rem;
+    text-align: right;
+}
+
+.track-estimate-date {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--color-darkgray);
+    margin: 0;
+}
+
+.track-divider {
+    border: none;
+    border-top: 1px solid #adb5bd;
+    margin-bottom: 2.5rem;
+}
+
+/* Vertical Stepper Timeline */
+.timeline-container {
+    position: relative;
+    padding-left: 1rem;
+}
+
+/* Base Line for Timeline */
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    bottom: 30px; /* Don't extend all the way down */
+    left: 28px; /* Center of the 20px icon + 1rem padding */
+    width: 3px;
+    background-color: #e9ecef;
+    z-index: 1;
+}
+
+.timeline-step {
+    display: flex;
+    position: relative;
+    margin-bottom: 2.5rem;
+    z-index: 2;
+}
+
+.timeline-step:last-child {
+    margin-bottom: 0;
+}
+
+/* Connecting lines logic based on exact heights */
+.timeline-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: 18px; /* Alignment with circle center */
+    width: 3px;
+    height: calc(100% + 2.5rem - 24px); /* Full margin height */
+    background-color: #e9ecef;
+    z-index: 1;
+}
+
+/* Active Line segment */
+.timeline-step.completed:not(:last-child)::after {
+    background-color: var(--color-primary);
+}
+
+.timeline-icon-container {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1.5rem;
+    z-index: 3;
+    flex-shrink: 0;
+    /* Adjust margin to align with content */
+    margin-top: 2px;
+}
+
+.timeline-step.completed .timeline-icon-container {
+    background-color: var(--color-primary); /* Blue */
+    color: white;
+}
+
+.timeline-step.active .timeline-icon-container {
+    background-color: white;
+    border: 3px solid #6c757d;
+    color: var(--color-darkgray);
+    width: 20px; /* smaller for border effect */
+    height: 20px;
+}
+
+.timeline-step.pending .timeline-icon-container {
+    background-color: #f8f9fa;
+    border: 2px solid #ced4da;
+    color: #adb5bd;
+    width: 20px;
+    height: 20px;
+}
+
+/* Icon overrides */
+
+.timeline-step.completed .timeline-icon-container {
+    /* Larger size for completed dot */
+    width: 24px;
+    height: 24px; border: none;
+}
+
+.timeline-content {
+    flex: 1;
+}
+
+.timeline-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #6c757d; /* Default pending */
+    margin: 0 0 0.2rem 0;
+}
+
+.timeline-step.completed .timeline-title {
+    color: var(--color-darkgray);
+}
+
+.timeline-step.active .timeline-title {
+    color: var(--color-darkgray);
+}
+
+.timeline-desc {
+    font-size: 0.95rem;
+    color: #adb5bd;
+    margin: 0;
+}
+
+.timeline-step.completed .timeline-desc {
+    color: #6c757d;
+}
+
+.timeline-step.active .timeline-desc {
+    color: var(--color-darkgray); /* Darker pending text */
+}

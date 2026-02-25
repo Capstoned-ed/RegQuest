@@ -63,7 +63,7 @@ const RegisterPage = () => {
                     <input
                       type="text"
                       className="form-input"
-                      placeholder=""
+                      placeholder="Provide your full name"
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                     />
@@ -76,7 +76,11 @@ const RegisterPage = () => {
                     <div className="input-icon">
                       <IdCard className="icon-svg" />
                     </div>
-                    <input type="text" className="form-input" placeholder="" />
+                    <input 
+                      type="text" 
+                      className="form-input" 
+                      placeholder="Provide your student ID" 
+                    />
                   </div>
                 </div>
 
@@ -86,7 +90,11 @@ const RegisterPage = () => {
                     <div className="input-icon">
                       <GraduationCap className="icon-svg" />
                     </div>
-                    <input type="text" className="form-input" placeholder="" />
+                    <input 
+                      type="text" 
+                      className="form-input" 
+                      placeholder="Provide course/program" 
+                    />
                   </div>
                 </div>
 
@@ -96,12 +104,16 @@ const RegisterPage = () => {
                     <div className="input-icon">
                       <Calendar className="icon-svg" />
                     </div>
-                    <input type="text" className="form-input" placeholder="" />
+                    <input 
+                      type="text" 
+                      className="form-input" 
+                      placeholder="Provide your year level" 
+                    />
                   </div>
                 </div>
 
                 <div className="register-buttons">
-                  <button onClick={nextStep} className="btn-next">Next Step</button>
+                  <button onClick={nextStep} className="register-btn-next">Next Step</button>
                 </div>
               </>
             )}
@@ -114,14 +126,14 @@ const RegisterPage = () => {
                     <div className="input-icon">
                       <Mail className="icon-svg" />
                     </div>
-                    <input type="email" className="form-input" placeholder="" />
+                    <input type="email" className="form-input" placeholder="Enter your email address" />
                   </div>
                 </div>
 
                 <div className="input-group">
                   <label className="input-label">Upload School ID</label>
                   <label className="file-upload-label">
-                    <Upload className="h-5 w-5" />
+                    <Upload className="h-8 w-5" />
                     Upload File (.png, .jpg, .jpeg)
                     <input type="file" className="hidden" style={{ display: 'none' }} />
                   </label>
@@ -133,7 +145,7 @@ const RegisterPage = () => {
                     <div className="input-icon">
                       <Lock className="icon-svg" />
                     </div>
-                    <input type="password" className="form-input" placeholder="" />
+                    <input type="password" className="form-input" placeholder="Enter your password" />
                   </div>
                 </div>
 
@@ -143,12 +155,12 @@ const RegisterPage = () => {
                     <div className="input-icon">
                       <Lock className="icon-svg" />
                     </div>
-                    <input type="password" className="form-input" placeholder="" />
+                    <input type="password" className="form-input" placeholder="Re-enter your password" />
                   </div>
                 </div>
 
                 <div className="register-buttons">
-                  <button onClick={prevStep} className="btn-back">Back</button>
+                  <button onClick={prevStep} className="register-btn-back">Back</button>
                   <button onClick={handleRegister} className="btn-register">Register</button>
                 </div>
               </>

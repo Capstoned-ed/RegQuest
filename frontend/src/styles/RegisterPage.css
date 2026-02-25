@@ -1,13 +1,4 @@
-:root {
-    --color-primary: #00007F;
-    --color-accent: #FEC956;
-    --color-darkgray: #4B4A4A;
-    --color-gray-100: #f3f4f6;
-    --color-gray-200-50: rgba(229, 231, 235, 0.5);
-    --color-white: #ffffff;
-    --color-white-10: rgba(255, 255, 255, 0.1);
-    --color-blue-100: #dbeafe;
-}
+
 
 .register-page-container {
     min-height: 100vh;
@@ -147,7 +138,7 @@
     gap: 1rem;
 }
 
-.btn-next,
+.register-btn-next,
 .btn-register {
     background-color: var(--color-accent);
     color: var(--color-white);
@@ -160,13 +151,13 @@
     flex: 1;
 }
 
-.btn-next:hover,
+.register-btn-next:hover,
 .btn-register:hover {
     background-color: #facc15;
     transform: translateY(-1px);
 }
 
-.btn-back {
+.register-btn-back {
     background-color: transparent;
     color: var(--color-primary);
     font-weight: 700;
@@ -175,7 +166,7 @@
     cursor: pointer;
 }
 
-.btn-back:hover {
+.register-btn-back:hover {
     text-decoration: underline;
 }
 

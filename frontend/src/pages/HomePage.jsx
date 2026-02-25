@@ -1,7 +1,10 @@
 import React from 'react';
-import { Bell, User as UserIcon, FileText, Shield, Award, FileCheck } from 'lucide-react';
-import { Link, useNavigate } from "react-router-dom";
+import { User as UserIcon, FileText, Shield, Award, FileCheck } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import Prediction from '../components/Prediction';
+import Button from '../components/Button';
 import '../styles/HomePage.css';
 
 const HomePage = ({ currentUser }) => {
@@ -72,7 +75,7 @@ const HomePage = ({ currentUser }) => {
     ];
 
     return (
-        <div className="homepage-container">
+        <main className="homepage-container">
 
             <Navbar currentUser={currentUser} />
 
@@ -91,8 +94,8 @@ const HomePage = ({ currentUser }) => {
                     </p>
 
                     <div className="hero-buttons">
-                        <button className="btn-primary" onClick={() => navigate('/request-document')}>Start Request</button>
-                        <button className="btn-outline" onClick={() => navigate('/track-status')}>Track Status</button>
+                        <Button className="btn-primary" onClick={() => navigate('/request-document')}>Start Request</Button>
+                        <Button className="btn-outline" onClick={() => navigate('/track-status')}>Track Status</Button>
                     </div>
                 </div>
             </header>
@@ -110,10 +113,24 @@ const HomePage = ({ currentUser }) => {
                             <div className="card-content">
                                 <h3 className="card-title">{cred.title}</h3>
                                 <p className="card-desc">{cred.description}</p>
+                                
+                                <div style={{ 
+                                    backgroundColor: 'rgba(255, 255, 255, 0.5)', 
+                                    padding: '0.8rem', 
+                                    borderRadius: '8px',
+                                    marginBottom: '1rem',
+                                    marginTop: 'auto'
+                                }}>
+                                    <Prediction 
+                                        label="Estimated Processing Time" 
+                                        result="3 to 5 Days" 
+                                        confidence={95} 
+                                    />
+                                </div>
 
-                                <div className="card-footer">
+                                <div className="card-footer" style={{ marginTop: '0' }}>
                                     <span className="price-tag">₱ {cred.price}</span>
-                                    <button className="request-btn-small">Request →</button>
+                                    <Button className="request-btn-small" onClick={() => navigate('/request-document')}>Request →</Button>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +152,7 @@ const HomePage = ({ currentUser }) => {
                         className="status-input"
                         placeholder="Enter Reference ID (e.g., RQ-000123)"
                     />
-                    <button className="status-btn" onClick={() => navigate('/track-status')}>Track Now</button>
+                    <Button className="status-btn" onClick={() => navigate('/track-status')}>Track Now</Button>
                 </div>
             </section>
 
@@ -161,39 +178,9 @@ const HomePage = ({ currentUser }) => {
                 </div>
             </section>
 
-            <footer className="footer">
-                <div className="footer-content">
-                    <div className="footer-col" style={{ gridColumn: 'span 2' }}>
-                        <p style={{ fontSize: '0.9rem', lineHeight: '1.6', maxWidth: '300px', color: '#94a3b8' }}>
-                            A online portal to streamline the credential request process.
-                        </p>
-                        <p style={{ marginTop: '2rem', fontSize: '0.8rem', color: '#64748b' }}>
-                            © 2026 RegQuest. All rights reserved.
-                        </p>
-                    </div>
+            <Footer />
 
-                    <div className="footer-col">
-                        <h4>Quick Links</h4>
-                        <ul>
-                            <li><Link to="/home" style={{ color: 'inherit', textDecoration: 'none' }}>Home</Link></li>
-                            <li><Link to="/request-document" style={{ color: 'inherit', textDecoration: 'none' }}>Request Document</Link></li>
-                            <li><Link to="/track-status" style={{ color: 'inherit', textDecoration: 'none' }}>Track Status</Link></li>
-                        </ul>
-                    </div>
-
-                    <div className="footer-col">
-                        <h4>Support</h4>
-                        <ul>
-                            <li>How it Works</li>
-                            <li>Safety Guidelines</li>
-                            <li>FAQ</li>
-                            <li>Contact US</li>
-                        </ul>
-                    </div>
-                </div>
-            </footer>
-
-        </div>
+        </main>
     );
 };
 

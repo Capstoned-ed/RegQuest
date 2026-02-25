@@ -7,18 +7,19 @@ import SuccessPage from './pages/SuccessPage';
 import HomePage from './pages/HomePage';
 import RequestDocument from './pages/RequestDocument';
 import TrackStatus from './pages/TrackStatus';
+import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
-  // Mock user data - Shared across pages
   const currentUser = {
     name: "User",
     role: "Student",
     studentId: "2023-0001",
-    notifications: 5 // Example count to verify consistency
+    notifications: 5
   };
 
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

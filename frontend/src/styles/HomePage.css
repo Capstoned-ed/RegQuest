@@ -1,16 +1,9 @@
-:root {
-    --color-primary: #00007F;
-    --color-accent: #FEC956;
-    --color-darkgray: #4B4A4A;
-    --color-gray-100: #f3f4f6;
-    --color-white: #ffffff;
-    --color-blue-dark: #00005C;
-}
-
 
 .homepage-container {
     min-height: 100vh;
     width: 100%;
+    display: flex;
+    flex-direction: column;
     background-color: var(--color-white);
     font-family: 'Inter', sans-serif;
 }
@@ -72,7 +65,7 @@
 
 .btn-primary {
     background-color: var(--color-accent);
-    color: #000;
+    color: var(--color-primary);
     font-weight: 700;
     padding: 0.75rem 2rem;
     border-radius: 2rem;
@@ -114,10 +107,18 @@
 
 .credentials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2.5rem;
+    max-width: 1250px;
+    margin: 0 auto;
 }
 
+/* Force 3 columns max on larger screens */
+@media (min-width: 1024px) {
+    .credentials-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
 .credential-card {
     background: white;
     border-radius: 1rem;
@@ -299,41 +300,7 @@
     line-height: 1.5;
 }
 
-.footer {
-    background-color: #0F172A;
-    color: white;
-    padding: 4rem 2rem;
-}
 
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.footer-col h4 {
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-}
-
-.footer-col ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-col ul li {
-    margin-bottom: 0.75rem;
-    font-size: 0.875rem;
-    color: #94a3b8;
-    cursor: pointer;
-}
-
-.footer-col ul li:hover {
-    color: white;
-}
 
 @media (max-width: 768px) {
     .hero-content {
@@ -346,9 +313,5 @@
 
     .features-grid {
         grid-template-columns: 1fr;
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr 1fr;
     }
 }
