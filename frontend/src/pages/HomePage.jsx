@@ -94,8 +94,8 @@ const HomePage = ({ currentUser }) => {
                     </p>
 
                     <div className="hero-buttons">
-                        <Button className="btn-primary" onClick={() => navigate('/request-document')}>Start Request</Button>
-                        <Button className="btn-outline" onClick={() => navigate('/track-status')}>Track Status</Button>
+                        <Button className="hero-btn-primary" onClick={() => navigate('/request-document')}>Start Request</Button>
+                        <Button className="hero-btn-outline" onClick={() => navigate('/track-status')}>Track Status</Button>
                     </div>
                 </div>
             </header>

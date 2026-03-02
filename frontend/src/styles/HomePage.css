@@ -62,8 +62,7 @@
     display: flex;
     gap: 1rem;
 }
-
-.btn-primary {
+.hero-btn-primary {
     background-color: var(--color-accent);
     color: var(--color-primary);
     font-weight: 700;
@@ -71,26 +70,27 @@
     border-radius: 2rem;
     border: none;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.2s, background-color 0.2s;
 }
 
-.btn-outline {
+.hero-btn-primary:hover {
+    transform: translateY(-2px);
+    background-color: #fbd371;
+}
+
+.hero-btn-outline {
     background-color: transparent;
-    color: white;
+    color: var(--color-accent);
     font-weight: 600;
     padding: 0.75rem 2rem;
     border-radius: 2rem;
-    border: 1px solid white;
+    border: 2px solid var(--color-accent);
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
-.btn-primary:hover {
-    transform: translateY(-2px);
-}
-
-.btn-outline:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+.hero-btn-outline:hover {
+    background-color: rgba(254, 201, 86, 0.1);
 }
 
 .credentials-section {
@@ -113,7 +113,6 @@
     margin: 0 auto;
 }
 
-/* Force 3 columns max on larger screens */
 @media (min-width: 1024px) {
     .credentials-grid {
         grid-template-columns: repeat(3, 1fr);

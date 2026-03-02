@@ -40,10 +40,9 @@
     align-items: flex-start;
 }
 
-/* Sidebar Styling */
 .profile-sidebar {
     width: 280px;
-    padding: 1rem 0 !important; /* Override Card padding */
+    padding: 1rem 0 !important;
     flex-shrink: 0;
 }
 
@@ -80,14 +79,13 @@
     border-left-color: var(--color-accent);
 }
 
-/* Main Content Area */
 .profile-content-area {
     flex: 1;
-    min-width: 0; /* Prevent flex overflow */
+    min-width: 0;
 }
 
 .profile-content-card {
-    padding: 2.5rem !important; /* Standard padding for content */
+    padding: 2.5rem !important;
 }
 
 .content-title {
@@ -103,7 +101,6 @@
     margin-bottom: 2rem;
 }
 
-/* Form Styles Override */
 .profile-form-grid {
     width: 100%;
 }
@@ -136,7 +133,6 @@
     border-color: #e9ecef !important;
 }
 
-/* Avatar Section */
 .avatar-section {
     display: flex;
     align-items: center;
@@ -191,7 +187,6 @@
     color: #6c757d;
 }
 
-/* Actions */
 .profile-actions {
     display: flex;
     justify-content: flex-end;
@@ -213,7 +208,6 @@
     background-color: var(--color-blue-dark);
 }
 
-/* Payments Tab */
 .saved-payments {
     margin-bottom: 1.5rem;
 }
@@ -282,7 +276,6 @@
     border-color: #adb5bd;
 }
 
-/* Toggles & Security */
 .two-factor-section {
     margin-top: 2.5rem;
     padding-top: 2rem;
@@ -320,7 +313,6 @@
     background-color: #f0f7ff;
 }
 
-/* UI Switch Toggle */
 .toggle-item {
     display: flex;
     justify-content: space-between;
@@ -381,7 +373,7 @@
 }
 
 input:checked + .slider {
-    background-color: #10b981;
+    background-color: var(--color-primary);
 }
 
 input:checked + .slider:before {
