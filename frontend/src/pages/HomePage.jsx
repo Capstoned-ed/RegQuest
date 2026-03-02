@@ -1,10 +1,10 @@
-import React from 'react';
 import { User as UserIcon, FileText, Shield, Award, FileCheck } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Prediction from '../components/Prediction';
 import Button from '../components/Button';
+import Card from '../components/Card';
 import '../styles/HomePage.css';
 
 const HomePage = ({ currentUser }) => {
@@ -105,7 +105,7 @@ const HomePage = ({ currentUser }) => {
 
                 <div className="credentials-grid">
                     {credentials.map((cred) => (
-                        <div key={cred.id} className="credential-card">
+                        <Card key={cred.id} className="credential-card">
                             <div className="card-header-bg">
                                 <div className="card-icon">{cred.icon}</div>
                             </div>
@@ -133,7 +133,7 @@ const HomePage = ({ currentUser }) => {
                                     <Button className="request-btn-small" onClick={() => navigate('/request-document')}>Request →</Button>
                                 </div>
                             </div>
-                        </div>
+                        </Card>
                     ))}
                 </div>
             </section>

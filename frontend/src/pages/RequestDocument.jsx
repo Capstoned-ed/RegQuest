@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronRight, ChevronLeft, CheckCircle, Check } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
+import Card from '../components/Card';
 import '../styles/RequestDocument.css';
 
 const RequestDocument = ({ currentUser }) => {
@@ -86,7 +87,7 @@ const RequestDocument = ({ currentUser }) => {
                 </div>
 
                 {currentStep === 1 && (
-                    <div className="request-card">
+                    <Card className="request-card">
                         <h2 className="card-title">Select Document</h2>
                         
                         <div className="document-list">
@@ -132,11 +133,11 @@ const RequestDocument = ({ currentUser }) => {
                                 <ChevronRight size={16} />
                             </Button>
                         </div>
-                    </div>
+                    </Card>
                 )}
 
                 {currentStep === 2 && (
-                    <div className="request-card">
+                    <Card className="request-card">
                         <h2 className="card-title">Review Data</h2>
                         
                         <div className="review-data-container">
@@ -210,11 +211,11 @@ const RequestDocument = ({ currentUser }) => {
                                 Next Step
                             </Button>
                         </div>
-                    </div>
+                    </Card>
                 )}
 
                 {currentStep === 3 && (
-                    <div className="request-card">
+                    <Card className="request-card">
                         <h2 className="card-title">Payment</h2>
                         
                         <div className="payment-summary-box">
@@ -275,11 +276,11 @@ const RequestDocument = ({ currentUser }) => {
                                 Pay & Submit
                             </Button>
                         </div>
-                    </div>
+                    </Card>
                 )}
 
                 {currentStep === 4 && (
-                    <div className="request-card">
+                    <Card className="request-card">
                         <div className="complete-container">
                             <div className="success-icon-container">
                                 <CheckCircle size={80} color="#3CC15E" fill="#3CC15E" stroke="white" strokeWidth={2} />
@@ -304,7 +305,7 @@ const RequestDocument = ({ currentUser }) => {
                                 </Link>
                             </div>
                         </div>
-                    </div>
+                    </Card>
                 )}
             </main>
 

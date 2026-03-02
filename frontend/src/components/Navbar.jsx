@@ -1,16 +1,32 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Bell, User as UserIcon } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Bell, User as UserIcon, LogOut } from 'lucide-react';
 import logo from '../assets/regquest-logo.png';
 import '../styles/Navbar.css';
 
 const Navbar = ({ currentUser }) => {
     const location = useLocation();
+    const navigate = useNavigate();
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const dropdownRef = useRef(null);
 
     const user = currentUser || {
         name: "User",
-        notifications: 0
+        notifications: 5
     };
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsDropdownOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     const isActive = (path) => {
         return location.pathname === path ? "nav-link active" : "nav-link";
@@ -35,13 +51,32 @@ const Navbar = ({ currentUser }) => {
                         <span className="notification-badge">{user.notifications}</span>
                     )}
                 </button>
-                <div className="user-profile">
+                <div className="user-profile" ref={dropdownRef}>
                     <span style={{ marginRight: '10px', fontWeight: '600', color: '#4B4A4A' }}>
                         Hello, {user.name}
                     </span>
-                    <button className="profile-btn">
+                    <button 
+                        className="profile-btn"
+                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    >
                         <UserIcon size={24} />
                     </button>
+
+                    {isDropdownOpen && (
+                        <div className="profile-dropdown">
+                            <Link to="/profile" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>
+                                <UserIcon size={16} />
+                                Profile
+                            </Link>
+                            <button className="dropdown-item logout" onClick={() => {
+                                setIsDropdownOpen(false);
+                                navigate('/');
+                            }}>
+                                <LogOut size={16} />
+                                Logout
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
         </nav>

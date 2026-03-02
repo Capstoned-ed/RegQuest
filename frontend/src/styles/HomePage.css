@@ -120,16 +120,14 @@
     }
 }
 .credential-card {
-    background: white;
-    border-radius: 1rem;
     padding: 2rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     border: 1px solid #e5e7eb;
     position: relative;
     overflow: hidden;
-    transition: box-shadow 0.3s;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .credential-card:hover {

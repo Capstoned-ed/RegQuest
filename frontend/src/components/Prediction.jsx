@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Prediction = ({ label, result, confidence }) => {
     return (
         <section style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>

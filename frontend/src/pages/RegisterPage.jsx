@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { User, IdCard, GraduationCap, Calendar, Mail, Upload, Lock } from 'lucide-react';
 import '../styles/RegisterPage.css';

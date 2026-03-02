@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Check, Clock, FileText } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
+import Card from '../components/Card';
 import '../styles/TrackStatus.css';
 
 const TrackStatus = ({ currentUser }) => {
@@ -39,14 +40,15 @@ const TrackStatus = ({ currentUser }) => {
                     <input 
                         type="text" 
                         className="track-input" 
-                        placeholder="RQ-097323" 
+                        placeholder="Enter Reference ID (e.g., RQ-000123)" 
                         value={trackingId}
                         onChange={(e) => setTrackingId(e.target.value)}
                         onKeyDown={handleSearch}
                     />
+                    <Button className="track-btn" onClick={handleSearch}>Track Now</Button>
                 </div>
 
-                <div className="track-result-card">
+                <Card className="track-result-card">
                     <div className="track-result-header">
                         <span className="track-id-label">Tracking ID</span>
                         <div>
@@ -76,7 +78,7 @@ const TrackStatus = ({ currentUser }) => {
                             </div>
                         ))}
                     </div>
-                </div>
+                </Card>
 
             </main>
 

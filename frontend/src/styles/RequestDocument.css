@@ -57,12 +57,12 @@
 }
 
 .request-card {
-    background: white;
     width: 100%;
     max-width: 600px;
-    border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
-    padding: 2.5rem 2.5rem 3rem 2.5rem;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
 }
 
 .card-title {

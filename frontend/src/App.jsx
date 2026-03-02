@@ -7,6 +7,7 @@ import SuccessPage from './pages/SuccessPage';
 import HomePage from './pages/HomePage';
 import RequestDocument from './pages/RequestDocument';
 import TrackStatus from './pages/TrackStatus';
+import ProfilePage from './pages/ProfilePage';
 import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/home" element={<HomePage currentUser={currentUser} />} />
         <Route path="/request-document" element={<RequestDocument currentUser={currentUser} />} />
         <Route path="/track-status" element={<TrackStatus currentUser={currentUser} />} />
+        <Route path="/profile" element={<ProfilePage currentUser={currentUser} />} />
       </Routes>
     </Router>
   );

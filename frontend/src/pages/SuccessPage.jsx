@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Hourglass } from 'lucide-react';
+import Card from '../components/Card';
 import '../styles/SuccessPage.css';
 
 const SuccessPage = () => {
@@ -13,7 +14,7 @@ const SuccessPage = () => {
                 <div className="success-bg-overlay"></div>
             </div>
 
-            <div className="success-card">
+            <Card className="success-card">
                 <div className="success-icon-container">
                     <div className="success-icon-bg">
                         <Hourglass className="success-icon" />
@@ -50,7 +51,7 @@ const SuccessPage = () => {
                         Return to Login
                     </button>
                 </Link>
-            </div>
+            </Card>
         </main>
     );
 };
