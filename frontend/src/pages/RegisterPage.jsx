@@ -31,8 +31,12 @@ const RegisterPage = () => {
 
       <section className="register-card">
         <section className="register-left-panel">
-          <div className="decorative-circle circle-top-left"></div>
-          <div className="decorative-circle circle-bottom-right"></div>
+
+          <img 
+            src="/regquest-icon.png" 
+            alt="RegQuest Icon" 
+            style={{ width: '80px', height: 'auto', marginBottom: '2rem', zIndex: 10, position: 'relative', alignSelf: 'center' }} 
+          />
 
           <h2 className="register-welcome-title">
             WELCOME to<br />RegQuest

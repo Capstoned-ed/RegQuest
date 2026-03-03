@@ -125,7 +125,7 @@
     position: absolute;
     top: 15px;
     bottom: 30px;
-    left: 28px;
+    left: 29px;
     width: 3px;
     background-color: #e9ecef;
     z-index: 1;
@@ -145,21 +145,17 @@
 .timeline-step:not(:last-child)::after {
     content: '';
     position: absolute;
-    top: 24px;
-    left: 18px;
+    top: 28px;
+    left: 12.5px;
     width: 3px;
-    height: calc(100% + 2.5rem - 24px);
+    height: calc(100% + 2.5rem - 28px);
     background-color: #e9ecef;
     z-index: 1;
 }
 
-.timeline-step.completed:not(:last-child)::after {
-    background-color: var(--color-primary);
-}
-
 .timeline-icon-container {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     background-color: #e9ecef;
     display: flex;
@@ -169,33 +165,12 @@
     z-index: 3;
     flex-shrink: 0;
     margin-top: 2px;
+    color: var(--color-darkgray);
 }
 
 .timeline-step.completed .timeline-icon-container {
     background-color: var(--color-primary);
     color: white;
-}
-
-.timeline-step.active .timeline-icon-container {
-    background-color: white;
-    border: 3px solid #6c757d;
-    color: var(--color-darkgray);
-    width: 20px;
-    height: 20px;
-}
-
-.timeline-step.pending .timeline-icon-container {
-    background-color: #f8f9fa;
-    border: 2px solid #ced4da;
-    color: #adb5bd;
-    width: 20px;
-    height: 20px;
-}
-
-
-.timeline-step.completed .timeline-icon-container {
-    width: 24px;
-    height: 24px; border: none;
 }
 
 .timeline-content {
@@ -205,30 +180,15 @@
 .timeline-title {
     font-size: 1.15rem;
     font-weight: 800;
-    color: #6c757d;
+    color: var(--color-darkgray);
     margin: 0 0 0.2rem 0;
-}
-
-.timeline-step.completed .timeline-title {
-    color: var(--color-darkgray);
-}
-
-.timeline-step.active .timeline-title {
-    color: var(--color-darkgray);
 }
 
 .timeline-desc {
     font-size: 0.95rem;
-    color: #adb5bd;
-    margin: 0;
-}
-
-.timeline-step.completed .timeline-desc {
-    color: #6c757d;
-}
-
-.timeline-step.active .timeline-desc {
     color: var(--color-darkgray);
+    margin: 0;
+    opacity: 0.85;
 }
 
 @media (max-width: 640px) {

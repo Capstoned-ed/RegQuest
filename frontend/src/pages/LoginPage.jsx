@@ -19,6 +19,11 @@ const LoginPage = () => {
       <section className="login-card">
 
         <section className="left-panel">
+          <img 
+            src="/regquest-icon.png" 
+            alt="RegQuest Icon" 
+            style={{ width: '80px', height: 'auto', marginBottom: '2rem', zIndex: 10, position: 'relative', alignSelf: 'center' }} 
+          />
           <h2 className="welcome-title">
             Welcome<br />Back!
           </h2>

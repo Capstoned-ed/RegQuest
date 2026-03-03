@@ -36,7 +36,9 @@ const Navbar = ({ currentUser }) => {
     return (
         <nav className="navbar">
             <div className="logo-section">
-                <img src={logo} alt="RegQuest" className="logo-image" />
+                <Link to="/home">
+                    <img src={logo} alt="RegQuest" className="logo-image" />
+                </Link>
             </div>
 
             <button 

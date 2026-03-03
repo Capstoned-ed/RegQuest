@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Check, Clock, FileText } from 'lucide-react';
+import { Check, Clock, FileText, Package } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
@@ -63,13 +63,10 @@ const TrackStatus = ({ currentUser }) => {
                         {statusData.map((item, index) => (
                             <div key={item.id} className={`timeline-step ${item.status}`}>
                                 <div className="timeline-icon-container">
-                                    {item.status === 'completed' ? (
-                                        <Check size={14} strokeWidth={3} />
-                                    ) : item.status === 'active' ? (
-                                        <Clock size={14} strokeWidth={3} />
-                                    ) : (
-                                        <FileText size={14} strokeWidth={2.5} />
-                                    )}
+                                    {item.id === 1 && <Check size={18} strokeWidth={3} />}
+                                    {item.id === 2 && <Clock size={16} strokeWidth={2.5} />}
+                                    {item.id === 3 && <FileText size={16} strokeWidth={2.5} />}
+                                    {item.id === 4 && <Package size={16} strokeWidth={2.5} />}
                                 </div>
                                 <div className="timeline-content">
                                     <h3 className="timeline-title">{item.title}</h3>
