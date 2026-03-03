@@ -40,3 +40,12 @@
         grid-template-columns: 1fr 1fr;
     }
 }
+
+@media (max-width: 640px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    .footer {
+        padding: 3rem 1.5rem;
+    }
+}

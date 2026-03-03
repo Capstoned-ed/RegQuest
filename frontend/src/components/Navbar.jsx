@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Bell, User as UserIcon, LogOut } from 'lucide-react';
+import { Bell, User as UserIcon, LogOut, Menu, X } from 'lucide-react';
 import logo from '../assets/regquest-logo.png';
 import '../styles/Navbar.css';
 
@@ -8,6 +8,7 @@ const Navbar = ({ currentUser }) => {
     const location = useLocation();
     const navigate = useNavigate();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const dropdownRef = useRef(null);
 
     const user = currentUser || {
@@ -38,10 +39,19 @@ const Navbar = ({ currentUser }) => {
                 <img src={logo} alt="RegQuest" className="logo-image" />
             </div>
 
-            <div className="nav-links">
-                <Link to="/home" className={isActive('/home')}>Home</Link>
-                <Link to="/request-document" className={isActive('/request-document')}>Request Document</Link>
-                <Link to="/track-status" className={isActive('/track-status')}>Track Status</Link>
+            <button 
+                className="mobile-menu-btn" 
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-expanded={isMenuOpen}
+                aria-label="Toggle navigation menu"
+            >
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+
+            <div className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
+                <Link to="/home" className={isActive('/home')} onClick={() => setIsMenuOpen(false)}>Home</Link>
+                <Link to="/request-document" className={isActive('/request-document')} onClick={() => setIsMenuOpen(false)}>Request Document</Link>
+                <Link to="/track-status" className={isActive('/track-status')} onClick={() => setIsMenuOpen(false)}>Track Status</Link>
             </div>
 
             <div className="user-section">

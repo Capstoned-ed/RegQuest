@@ -61,6 +61,7 @@
 .hero-buttons {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 .hero-btn-primary {
     background-color: var(--color-accent);
@@ -107,10 +108,16 @@
 
 .credentials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: 1fr;
     gap: 2.5rem;
     max-width: 1250px;
     margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+    .credentials-grid {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    }
 }
 
 @media (min-width: 1024px) {
@@ -310,5 +317,11 @@
 
     .features-grid {
         grid-template-columns: 1fr;
+    }
+
+    .credentials-section,
+    .status-section,
+    .features-section {
+        padding: 3rem 1.5rem;
     }
 }

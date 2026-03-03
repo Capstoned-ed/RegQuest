@@ -21,7 +21,7 @@
 .track-title {
     font-size: 2.2rem;
     font-weight: 800;
-    color: var(--color-primary); /* Blue */
+    color: var(--color-primary);
     margin-bottom: 0.8rem;
 }
 
@@ -30,7 +30,6 @@
     color: #6c757d;
 }
 
-/* Search Input Form */
 .track-search-container {
     margin-bottom: 2.5rem;
     width: 100%;
@@ -77,7 +76,6 @@
     background-color: var(--color-blue-dark);
 }
 
-/* Result Card */
 .track-result-card {
     width: 100%;
     max-width: 600px;
@@ -117,19 +115,17 @@
     margin-bottom: 2.5rem;
 }
 
-/* Vertical Stepper Timeline */
 .timeline-container {
     position: relative;
     padding-left: 1rem;
 }
 
-/* Base Line for Timeline */
 .timeline-container::before {
     content: '';
     position: absolute;
     top: 15px;
-    bottom: 30px; /* Don't extend all the way down */
-    left: 28px; /* Center of the 20px icon + 1rem padding */
+    bottom: 30px;
+    left: 28px;
     width: 3px;
     background-color: #e9ecef;
     z-index: 1;
@@ -146,19 +142,17 @@
     margin-bottom: 0;
 }
 
-/* Connecting lines logic based on exact heights */
 .timeline-step:not(:last-child)::after {
     content: '';
     position: absolute;
     top: 24px;
-    left: 18px; /* Alignment with circle center */
+    left: 18px;
     width: 3px;
-    height: calc(100% + 2.5rem - 24px); /* Full margin height */
+    height: calc(100% + 2.5rem - 24px);
     background-color: #e9ecef;
     z-index: 1;
 }
 
-/* Active Line segment */
 .timeline-step.completed:not(:last-child)::after {
     background-color: var(--color-primary);
 }
@@ -174,12 +168,11 @@
     margin-right: 1.5rem;
     z-index: 3;
     flex-shrink: 0;
-    /* Adjust margin to align with content */
     margin-top: 2px;
 }
 
 .timeline-step.completed .timeline-icon-container {
-    background-color: var(--color-primary); /* Blue */
+    background-color: var(--color-primary);
     color: white;
 }
 
@@ -187,7 +180,7 @@
     background-color: white;
     border: 3px solid #6c757d;
     color: var(--color-darkgray);
-    width: 20px; /* smaller for border effect */
+    width: 20px;
     height: 20px;
 }
 
@@ -199,10 +192,8 @@
     height: 20px;
 }
 
-/* Icon overrides */
 
 .timeline-step.completed .timeline-icon-container {
-    /* Larger size for completed dot */
     width: 24px;
     height: 24px; border: none;
 }
@@ -214,7 +205,7 @@
 .timeline-title {
     font-size: 1.15rem;
     font-weight: 800;
-    color: #6c757d; /* Default pending */
+    color: #6c757d;
     margin: 0 0 0.2rem 0;
 }
 
@@ -237,5 +228,17 @@
 }
 
 .timeline-step.active .timeline-desc {
-    color: var(--color-darkgray); /* Darker pending text */
+    color: var(--color-darkgray);
+}
+
+@media (max-width: 640px) {
+    .track-search-container {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .track-btn {
+        width: 100%;
+        padding: 1rem;
+    }
 }

@@ -530,3 +530,37 @@
     color: var(--color-primary);
     border-color: var(--color-primary);
 }
+
+@media (max-width: 640px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-methods-grid {
+        flex-direction: column;
+    }
+
+    .action-buttons {
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .stepper-container {
+        font-size: 0.8rem;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 0.5rem;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .stepper-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .step {
+        min-width: 130px;
+        flex: 0 0 auto;
+    }
+}

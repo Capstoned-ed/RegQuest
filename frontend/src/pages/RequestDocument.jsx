@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronRight, ChevronLeft, CheckCircle, Check } from 'lucide-react';
 import Navbar from '../components/Navbar';
@@ -24,6 +24,7 @@ const RequestDocument = ({ currentUser }) => {
     const [purpose, setPurpose] = useState('');
     const [paymentMethod, setPaymentMethod] = useState('');
     const navigate = useNavigate();
+    const stepperRef = useRef(null);
 
     // Fetch documents from backend placeholder
     useEffect(() => {
@@ -38,6 +39,16 @@ const RequestDocument = ({ currentUser }) => {
         // };
         // fetchDocuments();
     }, []);
+
+    // Auto-scroll stepper on mobile when currentStep changes
+    useEffect(() => {
+        if (stepperRef.current) {
+            const activeStep = stepperRef.current.children[currentStep - 1];
+            if (activeStep) {
+                activeStep.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+        }
+    }, [currentStep]);
 
     const toggleSelection = (id) => {
         setSelectedDocs(prev => 
@@ -67,7 +78,7 @@ const RequestDocument = ({ currentUser }) => {
             <Navbar currentUser={currentUser} />
             
             <main className="request-main-content">
-                <div className="stepper-container">
+                <div className="stepper-container" ref={stepperRef}>
                     <div className={`step ${currentStep >= 1 ? 'active' : ''}`}>
                         <span className="step-label">Select Document</span>
                         <div className="step-line"></div>

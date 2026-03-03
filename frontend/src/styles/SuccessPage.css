@@ -1,5 +1,3 @@
-
-
 .success-page-container {
     min-height: 100vh;
     width: 100%;
@@ -156,5 +154,15 @@
     to {
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+@media (max-width: 640px) {
+    .success-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .info-list {
+        flex-direction: column;
     }
 }
