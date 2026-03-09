@@ -21,9 +21,9 @@ const viewData = async () => {
         const [rows] = await pool.execute('SELECT * FROM users');
         
         if (rows.length === 0) {
-            console.log('--- 📭 The users table is currently empty! ---');
+            console.log('--- The users table is currently empty! ---');
         } else {
-            console.log('\n--- 👥 USERS TABLE DATA ---');
+            console.log('\n--- USERS TABLE DATA ---');
             console.table(rows);
         }
 
