@@ -2,10 +2,16 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { User, IdCard, GraduationCap, Calendar, Mail, Upload, Lock } from 'lucide-react';
 import '../styles/RegisterPage.css';
+import api from '../api/axios';
 
 const RegisterPage = () => {
   const [step, setStep] = useState(1);
-  const [fullName, setFullName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const nextStep = (e) => {
@@ -18,9 +24,32 @@ const RegisterPage = () => {
     setStep(1);
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    navigate('/success', { state: { fullName } });
+    setError('');
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    try {
+      const response = await api.post('/auth/register', {
+        fname: firstName,
+        lname: lastName,
+        email,
+        password
+      });
+
+      console.log('Registration successful', response.data);
+      navigate('/success', { state: { firstName, lastName } });
+    } catch (err) {
+      if (err.response && err.response.data) {
+        setError(err.response.data.message);
+      } else {
+        setError('An error occurred during registration.');
+      }
+    }
   };
 
   return (
@@ -59,7 +88,7 @@ const RegisterPage = () => {
             {step === 1 && (
               <>
                 <div className="input-group">
-                  <label className="input-label">Full Name</label>
+                  <label className="input-label">First Name</label>
                   <div className="input-wrapper">
                     <div className="input-icon">
                       <User className="icon-svg" />
@@ -67,9 +96,25 @@ const RegisterPage = () => {
                     <input
                       type="text"
                       className="form-input"
-                      placeholder="Provide your full name"
-                      value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
+                      placeholder="Provide your first name"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <div className="input-group">
+                  <label className="input-label">Last Name</label>
+                  <div className="input-wrapper">
+                    <div className="input-icon">
+                      <User className="icon-svg" />
+                    </div>
+                    <input
+                      type="text"
+                      className="form-input"
+                      placeholder="Provide your last name"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
                     />
                   </div>
                 </div>
@@ -130,7 +175,13 @@ const RegisterPage = () => {
                     <div className="input-icon">
                       <Mail className="icon-svg" />
                     </div>
-                    <input type="email" className="form-input" placeholder="Enter your email address" />
+                    <input 
+                      type="email" 
+                      className="form-input" 
+                      placeholder="Enter your email address" 
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
                   </div>
                 </div>
 
@@ -149,7 +200,13 @@ const RegisterPage = () => {
                     <div className="input-icon">
                       <Lock className="icon-svg" />
                     </div>
-                    <input type="password" className="form-input" placeholder="Enter your password" />
+                    <input 
+                      type="password" 
+                      className="form-input" 
+                      placeholder="Enter your password" 
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
                   </div>
                 </div>
 
@@ -159,9 +216,17 @@ const RegisterPage = () => {
                     <div className="input-icon">
                       <Lock className="icon-svg" />
                     </div>
-                    <input type="password" className="form-input" placeholder="Re-enter your password" />
+                    <input 
+                      type="password" 
+                      className="form-input" 
+                      placeholder="Re-enter your password" 
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
                   </div>
                 </div>
+
+                {error && <p style={{ color: 'red', marginTop: '1rem', textAlign: 'center' }}>{error}</p>}
 
                 <div className="register-buttons">
                   <button onClick={prevStep} className="register-btn-back">Back</button>

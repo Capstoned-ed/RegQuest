@@ -2,27 +2,26 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import db from "../config/db.js";
 import dotenv from "dotenv";
+import User from "../models/User.js";
 
 dotenv.config();
 
 export const registerUser = async (req, res, next) => {
     try {
-        const {full_name, email, password} = req.body;
-        if(!full_name || !email || !password) {
+        const {fname, lname, email, password} = req.body;
+        if(!fname || !lname || !email || !password) {
             res.status(400);
             throw new Error("All fields are required.");
         }
 
-        const user = await User.findOne({
-            
-        })
+        if(password.length < 8) {
+            res.status(400);
+            throw new Error("Password should be 8 characters long.")
+        }
 
-        const [existingUsers] = await db.execute(
-            'SELECT * FROM users WHERE email = ?',
-            [email]
-        );
+        const existingUser = await User.findByEmail(email);
 
-        if (existingUsers.length > 0) {
+        if (existingUser) {
             res.status(400);
             throw new Error("User already exists.");
         }
@@ -30,12 +29,13 @@ export const registerUser = async (req, res, next) => {
         const salt = 10;
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        const [result] = await db.execute(
-            'INSERT INTO users (full_name, email, password) VALUES(?, ?, ?)',
-            [full_name, email, hashedPassword]
-        );
+        const newUserID = await User.create({
+            fname,
+            lname,
+            email,
+            password:hashedPassword,
+        });
 
-        const newUserID = result.insertId;
         const jwt_token = jwt.sign({ id:newUserID }, process.env.JWT_SECRET, {
             expiresIn : process.env.JWT_EXPIRY, 
         });
@@ -44,10 +44,11 @@ export const registerUser = async (req, res, next) => {
             message: "User registered successfully.",
             user: {
                 id: newUserID,
-                full_name, full_name,
-                email: email,
+                fname,
+                lname,
+                email,
                 role: "user",
-            },
+            }, 
             jwt_token
         });
     } catch (error) {
@@ -65,12 +66,7 @@ export const loginUser = async (req, res, next) => {
             throw new Error("Please provide email and password."); 
         }
 
-        const [users] = await db.execute (
-            "SELECT * FROM users WHERE email = ?",
-            [email]
-        );
-
-        const user = users[0];
+        const user = await User.findByEmail(email);
 
         if(user &&(await bcrypt.compare(password, user.password))) {
             const jwt_token = jwt.sign({id:user.user_id}, process.env.JWT_SECRET, {
@@ -81,7 +77,8 @@ export const loginUser = async (req, res, next) => {
                 message: "Login successful",
                 user: {
                 id: user.user_id,
-                full_name: user.full_name,
+                fname: user.fname,
+                lname: user.lname,
                 email: user.email,
                 role: user.role,
             }, 

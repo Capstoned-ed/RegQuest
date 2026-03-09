@@ -6,7 +6,7 @@ import '../styles/SuccessPage.css';
 
 const SuccessPage = () => {
     const location = useLocation();
-    const fullName = location.state?.fullName || '@User';
+    const firstName = location.state?.firstName || 'User';
 
     return (
         <main className="success-page-container">
@@ -24,7 +24,7 @@ const SuccessPage = () => {
                 <h1 className="success-title">Registration Successful!</h1>
 
                 <p className="success-message">
-                    Thank you for signing up, <span className="user-name-highlight">@{fullName}</span>
+                    Thank you for signing up, <span className="user-name-highlight">@{firstName}</span>
                 </p>
 
                 <p className="account-status">

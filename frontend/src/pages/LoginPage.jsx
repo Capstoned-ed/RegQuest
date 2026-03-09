@@ -1,13 +1,34 @@
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock } from 'lucide-react';
 import '../styles/LoginPage.css';
+import api from '../api/axios';
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    navigate('/home');
+    setError('');
+
+    try {
+      const response = await api.post('/auth/login', { email, password });
+      
+      const { jwt_token, user } = response.data;
+      localStorage.setItem('jwt_token', jwt_token);
+      localStorage.setItem('user', JSON.stringify(user));
+
+      navigate('/home');
+    } catch (err) {
+      if (err.response && err.response.data) {
+        setError(err.response.data.message);
+      } else {
+        setError('Invalid email or password.');
+      }
+    }
   }
 
   return (
@@ -41,7 +62,7 @@ const LoginPage = () => {
           <form className="login-form">
             <div className="input-group">
               <label htmlFor="email" className="input-label">
-                Student ID
+                Student ID / Email
               </label>
               <div className="input-wrapper">
                 <div className="input-icon">
@@ -51,7 +72,9 @@ const LoginPage = () => {
                   type="text"
                   id="email"
                   className="form-input"
-                  placeholder="Enter your Student ID"
+                  placeholder="Enter your Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -69,9 +92,13 @@ const LoginPage = () => {
                   id="password"
                   className="form-input"
                   placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
+
+            {error && <p style={{ color: 'red', marginTop: '1rem', textAlign: 'center' }}>{error}</p>}
 
             <button type="submit" className="login-button" onClick={handleLogin}>
               Log In
